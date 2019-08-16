@@ -3,9 +3,11 @@ import { Card, CardBody } from 'reactstrap';
 import styled from 'styled-components';
 
 const StyledCard = styled(Card)`
+    border: 3px solid grey;
+    margin-top: 1em;
     text-align: center;
     h2 {
-        color: violet;
+        color: blue;
     }
 `
 

@@ -7,8 +7,10 @@ export default {
     getWeather: function(location) {
         return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${geocoderKey}`)
             .then(res => {
-                const { lat, lng } = res.data.results[0].geometry.location;
-                return axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${weatherKey}&days=7&units=I`)
+                if (res.data.results.length) {
+                    const { lat, lng } = res.data.results[0].geometry.location;
+                    return axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${weatherKey}&days=7&units=I`)
+                } 
             })
             .catch(err => console.log(err));
     }
