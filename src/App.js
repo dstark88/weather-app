@@ -25,7 +25,8 @@ class App extends Component {
     API.getWeather(location)
     .then(res => {
       this.setState({ 
-        days: res.data.data
+        days: res.data.data,
+        searchedLocation: `${res.data.city_name}, ${res.data.state_code}`
        })
 
     })
@@ -41,7 +42,7 @@ class App extends Component {
       <Container>
         <Row>
           <Col md={7}>
-            <h1>Weather for Location</h1>
+            <h1>Weather for {this.state.searchedLocation}</h1>
           </Col>
           <Col md={5}>
             <SearchBar />
