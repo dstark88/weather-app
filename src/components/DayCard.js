@@ -27,7 +27,7 @@ const CardWrapper = styled.div`
 `
 
 const DayCard = props => {
-    console.log(props);
+    // console.log(props);
     return (
         <Col >
             <CardWrapper onClick={props.selectDay} isActive={props.isActive}>

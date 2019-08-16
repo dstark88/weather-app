@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import moment from 'moment';
 
+import API from './utils/API';
 import DayCard from './components/DayCard';
 import DayDetail from './components/DayDetail';
 import SearchBar from './components/SearchBar';
@@ -10,13 +11,25 @@ import data from './data/sample.json';
 // console.log(data);
 class App extends Component {
   state = {
-    // days: [],
-    days: data.data,
-    selectedDay: null
+    days: [],
+    // days: data.data,
+    selectedDay: null,
+    searchedLocation: ""
   }
 
   componentDidMount() {
-    console.log(this.state.days[0]);
+    this.getWeather("Denver, CO");
+  }
+
+  getWeather = location => {
+    API.getWeather(location)
+    .then(res => {
+      this.setState({ 
+        days: res.data.data
+       })
+
+    })
+    .catch(err => console.log(err));
   }
 
   selectDay = day => {
